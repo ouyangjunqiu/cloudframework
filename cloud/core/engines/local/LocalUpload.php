@@ -49,7 +49,7 @@ class LocalUpload {
             $attach['attachdir'] = $this->getTargetDir( $attach['type'] );
             $attach['attachname'] = $this->getTargetFileName() . '.' . $attach['ext'];
             $attach['attachment'] = $attach['attachdir'] . $attach['attachname'];
-            $attach['target'] = File::getAttachUrl() . '/' . $attach['type'] . '/' . $attach['attachment'];
+            $attach['target'] = $attach['type'] . '/' . $attach['attachment'];
             $this->_attach = & $attach;
             $this->_errorCode = 0;
             return true;
@@ -77,7 +77,7 @@ class LocalUpload {
      * @return boolean
      */
     public function save() {
-        if ( !$this->saveToLocal( $this->_attach['tmp_name'], $this->_attach['target'] ) ) {
+        if ( !$this->saveToLocal( $this->_attach['tmp_name'], File::getAttachUrl()."/".$this->_attach['target'] ) ) {
             $this->_errorCode = -103;
             return false;
         } else {
