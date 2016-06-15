@@ -50,6 +50,7 @@ class LocalUpload {
             $attach['attachname'] = $this->getTargetFileName() . '.' . $attach['ext'];
             $attach['attachment'] = $attach['attachdir'] . $attach['attachname'];
             $attach['target'] = $attach['type'] . '/' . $attach['attachment'];
+            $attach['md5'] = md5_file($this->_attach['tmp_name']);
             $this->_attach = & $attach;
             $this->_errorCode = 0;
             return true;
