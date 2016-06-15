@@ -18,6 +18,8 @@
 namespace cloud\core\engines\local;
 
 
+use cloud\Cloud;
+
 class LocalFile {
 
 	private static $_instance;
@@ -42,7 +44,7 @@ class LocalFile {
 	 * @return boolean
 	 */
 	public function fileExists( $file ) {
-		return file_exists( $file );
+		return file_exists( Cloud::engine()->io()->getBasePath().DIRECTORY_SEPARATOR.$file );
 	}
 
 	/**
@@ -53,7 +55,7 @@ class LocalFile {
 	 * @return int|false
 	 */
 	public function createFile( $fileName, $content ) {
-		return file_put_contents( $fileName, $content );
+		return file_put_contents( Cloud::engine()->io()->getBasePath().DIRECTORY_SEPARATOR.$fileName, $content );
 	}
 
 	/**
@@ -63,7 +65,7 @@ class LocalFile {
 	 * @return boolean
 	 */
 	public function deleteFile( $fileName ) {
-		return @unlink( $fileName );
+		return @unlink( Cloud::engine()->io()->getBasePath().DIRECTORY_SEPARATOR.$fileName );
 	}
 
 	/**
@@ -72,7 +74,7 @@ class LocalFile {
 	 * @return string
 	 */
 	public function fileName( $fileName ) {
-		return sprintf( '%s', $fileName );
+		return sprintf( '%s', Cloud::engine()->io()->getBasePath().DIRECTORY_SEPARATOR.$fileName );
 	}
 
 	/**
@@ -81,7 +83,7 @@ class LocalFile {
 	 * @return string
 	 */
 	public function readFile( $fileName ) {
-		return file_get_contents( $fileName );
+		return file_get_contents( Cloud::engine()->io()->getBasePath().DIRECTORY_SEPARATOR.$fileName );
 	}
 
 	/**
@@ -90,7 +92,7 @@ class LocalFile {
 	 * @return integer 文件大小字节数
 	 */
 	public function fileSize( $file ) {
-		return sprintf( '%u', filesize( $file ) );
+		return sprintf( '%u', filesize( Cloud::engine()->io()->getBasePath().DIRECTORY_SEPARATOR.$file ) );
 	}
 
 	/**
@@ -99,8 +101,8 @@ class LocalFile {
 	 * @return mixed
 	 */
 	public function imageSize( $image ) {
-		if ( filesize( $image ) ) {
-			return getimagesize( $image );
+		if ( filesize( Cloud::engine()->io()->getBasePath().DIRECTORY_SEPARATOR.$image ) ) {
+			return getimagesize( Cloud::engine()->io()->getBasePath().DIRECTORY_SEPARATOR.$image );
 		} else {
 			return false;
 		}
@@ -111,7 +113,7 @@ class LocalFile {
 	 * @return string
 	 */
 	public function getTempPath() {
-		return sprintf( '%s', 'data/temp' );
+		return sprintf( '%s', Cloud::engine()->io()->getBasePath().DIRECTORY_SEPARATOR.'temp' );
 	}
 
 	/**
@@ -120,6 +122,7 @@ class LocalFile {
 	 * @return void
 	 */
 	public function clearDir( $dir ) {
+		$dir = Cloud::engine()->io()->getBasePath().DIRECTORY_SEPARATOR.$dir;
 		$directory = @dir( $dir );
 		if ( is_object( $directory ) ) {
 			while ( $entry = $directory->read() ) {
@@ -138,6 +141,7 @@ class LocalFile {
 	 * @param string $srcDir 目标文件夹路径
 	 */
 	public function clearDirs( $srcDir ) {
+		$srcDir = Cloud::engine()->io()->getBasePath().DIRECTORY_SEPARATOR.$srcDir;
 		$dir = @opendir( $srcDir );
 		while ( $entry = @readdir( $dir ) ) {
 			$file = $srcDir . DIRECTORY_SEPARATOR . $entry;
@@ -151,6 +155,48 @@ class LocalFile {
 		}
 		closedir( $dir );
 		@rmdir( $srcDir );
+	}
+
+	/**
+	 * 创建单层文件夹
+	 * @param string $dir 要创建的文件夹
+	 * @param integer $mode 文件夹权限
+	 * @param boolean $makeIndex 创建文件夹索引文件
+	 * @return boolean 成功与否
+	 */
+	public static function makeDir( $dir, $mode = 0777, $makeIndex = true ) {
+		$dir = Cloud::engine()->io()->getBasePath().DIRECTORY_SEPARATOR.$dir;
+		$res = true;
+		if ( !is_dir( $dir ) ) {
+			$res = @mkdir( $dir, $mode );
+			if ( $makeIndex ) {
+				@touch( $dir . '/index.html' );
+			}
+		}
+		return $res;
+	}
+
+	/**
+	 * 递归创建文件夹
+	 * @param string $dir 要创建的文件夹路径
+	 * @param integer $mode 文件夹权限
+	 * @param boolean $makeIndex 创建文件夹索引文件
+	 * @return boolean 成功与否
+	 */
+	public static function makeDirs( $dir, $mode = 0777, $makeIndex = true ) {
+		if ( !is_dir( Cloud::engine()->io()->getBasePath().DIRECTORY_SEPARATOR.$dir ) ) {
+			if ( !self::makeDirs( dirname( $dir ) ) ) {
+				return false;
+			}
+			if ( !@mkdir( Cloud::engine()->io()->getBasePath().DIRECTORY_SEPARATOR.$dir, $mode ) ) {
+				return false;
+			}
+			if ( $makeIndex ) {
+				@touch( Cloud::engine()->io()->getBasePath().DIRECTORY_SEPARATOR.$dir . '/index.html' );
+				@chmod( Cloud::engine()->io()->getBasePath().DIRECTORY_SEPARATOR.$dir . '/index.html', $mode );
+			}
+		}
+		return true;
 	}
 
 }

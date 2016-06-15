@@ -39,17 +39,7 @@ class File {
 	 * @return string
 	 */
 	public static function getAttachUrl() {
-		return PATH_DATA.DIRECTORY_SEPARATOR."attach";
-	}
-
-	/**
-	 * 下载文件接口
-	 * @param array $attach 附件数组
-	 * @param array $downloadInfo 下载额外信息
-	 * @return void
-	 */
-	public static function download( $attach, $downloadInfo = array() ) {
-		return Cloud::engine()->io()->file()->download( $attach, $downloadInfo );
+		return Cloud::engine()->io()->getBasePath();
 	}
 
 	/**

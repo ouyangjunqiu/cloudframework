@@ -39,4 +39,12 @@ class LocalIo extends Io {
         return LocalFile::getInstance();
     }
 
+    /**
+     * @return string
+     */
+    function getBasePath()
+    {
+        // TODO: Implement getBasePath() method.
+        return PATH_DATA.DIRECTORY_SEPARATOR."attach";
+    }
 }

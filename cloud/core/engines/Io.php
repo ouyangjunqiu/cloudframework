@@ -19,6 +19,11 @@ namespace cloud\core\engines;
 abstract class Io {
 
     /**
+     * @return string
+     */
+    abstract function getBasePath();
+
+    /**
      * 上传接口
      */
     abstract function upload( $fileArea, $module );
