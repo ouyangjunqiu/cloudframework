@@ -17,7 +17,6 @@
 
 namespace cloud\core\engines\local;
 
-use cloud\core\components\Upload;
 use cloud\core\engines\Io;
 
 class LocalIo extends Io {
@@ -26,10 +25,10 @@ class LocalIo extends Io {
      * 本地IO上传接口
      * @param array $fileArea 文件上传域
      * @param string $module 对应的模块
-     * @return Upload
+     * @return LocalUpload
      */
     public function upload( $fileArea, $module ) {
-        return new Upload( $fileArea, $module );
+        return new LocalUpload( $_FILES[$fileArea], $module );
     }
 
     /**

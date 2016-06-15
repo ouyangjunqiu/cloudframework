@@ -39,7 +39,7 @@ class File {
 	 * @return string
 	 */
 	public static function getAttachUrl() {
-		return rtrim( Cloud::app()->setting->get( 'setting/attachurl' ), DIRECTORY_SEPARATOR );
+		return PATH_DATA.DIRECTORY_SEPARATOR."attach";
 	}
 
 	/**

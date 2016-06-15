@@ -136,24 +136,6 @@ class Env {
 	}
 
 	/**
-	 * 检查当前路由是否在后台
-	 * @return boolean 当前路由是否在后台
-	 * @author gzwwb
-	 */
-	public static function checkInDashboard() {
-		$route = Cloud::app()->getUrlManager()->parseUrl( Cloud::app()->getRequest() );
-		if ( !empty( $route ) ) {
-			$notIn = (strpos( $route, 'dashboard' ) === false);
-			if ( $notIn ) {
-				return false;
-			} else {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	/**
 	 * @return bool
 	 */
 	public static function isLogin(){

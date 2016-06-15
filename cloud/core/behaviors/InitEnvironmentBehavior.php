@@ -28,7 +28,6 @@ class InitEnvironmentBehavior extends CBehavior
         define( 'STATICURL', Cloud::app()->assetManager->getBaseUrl() );
 
         define( 'IN_MOBILE', Env::checkInMobile() );
-        define( 'IN_DASHBOARD', Env::checkInDashboard() );
         define( 'TIMESTAMP', time() );
         define( 'IN_APP', Env::checkInApp() );
         $this->setTimezone();
