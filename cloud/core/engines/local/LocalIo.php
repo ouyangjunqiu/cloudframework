@@ -17,17 +17,23 @@
 
 namespace cloud\core\engines\local;
 
+use CException;
+use cloud\Cloud;
 use cloud\core\engines\Io;
 
 class LocalIo extends Io {
 
     /**
-     * 本地IO上传接口
-     * @param array $fileArea 文件上传域
-     * @param string $module 对应的模块
+     * @param $fileArea
+     * @param $module
      * @return LocalUpload
+     * @throws CException
      */
     public function upload( $fileArea, $module ) {
+        if(empty($_FILES[$fileArea])){
+            throw new CException(Cloud::lang( 'File area empty', 'error' ) );
+        }
+
         return new LocalUpload( $_FILES[$fileArea], $module );
     }
 
