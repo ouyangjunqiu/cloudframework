@@ -36,5 +36,3 @@ define('VERSION', '1.0.1');
 
 define('PAGE_SIZE',20);
 
-$ExpStr = "Expires: " . gmdate("D, d M Y H:i:s", time() + 300) . " GMT";
-defined('CACHE_EXPIRES') or define('CACHE_EXPIRES',$ExpStr);

@@ -123,4 +123,15 @@ class Browser extends CApplicationComponent {
         return $this->userAgent;
     }
 
+    /**
+     * 开启浏览器缓存
+     */
+    public function openCache(){
+        $ExpStr = "Expires: " . gmdate("D, d M Y H:i:s", time() + 300) . " GMT";
+
+        @header('Cache-Control: max-age=300, must-revalidate');
+
+        @header($ExpStr);
+    }
+
 }
