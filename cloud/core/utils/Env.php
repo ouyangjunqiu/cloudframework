@@ -206,6 +206,17 @@ class Env {
 
 	/**
 	 * @param $key
+	 * @param string $type
+	 * @return mixed|string
+	 */
+	public static function getQuery($key, $type = 'GP'){
+		$var = self::getRequest($key,$type);
+		return isset($var) && is_string($var)?addslashes($var):$var;
+	}
+
+
+	/**
+	 * @param $key
 	 * @param $defaultValue
 	 * @param $sessionKey
 	 * @return mixed
