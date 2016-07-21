@@ -1,19 +1,10 @@
 <?php
 
 /**
- * email工具类文件
- *
- * @author banyanCheung <banyan@YJCloud.com.cn>
- * @link http://www.YJCloud.com.cn/
- * @copyright Copyright &copy; 2012-2013 YJCloud Inc
- */
-/**
  * email工具类，提供发送邮件，定时发送邮件，发送给用户功能
- * 依赖于后台 -> 全局 -> 邮件设置的设置
  * 
  * @package application.core.utils
  * @version $Id: mail.php -1   $
- * @author banyanCheung <banyan@YJCloud.com.cn>
  */
 
 namespace cloud\core\utils;

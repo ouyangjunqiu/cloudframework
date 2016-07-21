@@ -1,13 +1,6 @@
 <?php
 
 /**
- * 数据层操作的抽象基类文件
- *
- * @author oShine
- * @link
- * @copyright Copyright &copy; 2012-2014 YJCloud Inc
- */
-/**
  * 数据层操作的抽象基类,提供给所有Model封装过的基本操作
  * 
  * @package cloud.core.model

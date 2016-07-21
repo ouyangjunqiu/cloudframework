@@ -3,9 +3,7 @@
 /**
  * 程序启动配置文件
  *
- * @author banyanCheung <banyan@YJCloud.com.cn>
- * @link http://www.YJCloud.com.cn/
- * @copyright Copyright &copy; 2012-2014 YJCloud Inc
+ * @author oshine <oyjqdlp@126.com>
  */
 return array(
     // 程序根目录

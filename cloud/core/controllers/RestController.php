@@ -1,14 +1,6 @@
 <?php
 
 /**
- * 继承到ICController的 controller文件.
- *
- * @author banyanCheung <banyan@YJCloud.com.cn>
- * @link http://www.YJCloud.com.cn/
- * @copyright Copyright &copy; 2008-2013 YJCloud Inc
- */
-
-/**
  * 全局控制器必须继承自CController
  * @package cloud.core.controllers
  * @author oshine <oshine.ouyang@da-mai.com>

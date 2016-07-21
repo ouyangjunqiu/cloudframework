@@ -1,16 +1,8 @@
 <?php
 
 /**
- * 系统环境与变量处理工具类文件
- *
- * @author banyanCheung <banyan@Cloud.com.cn>
- * @link http://www.Cloud.com.cn/
- * @copyright Copyright &copy; 2012-2013 Cloud Inc
- */
-/**
  * 系统环境与变量处理工具类库
  * @package application.core.utils
- * @author banyanCheung <banyan@Cloud.com.cn>
  * @version $Id: env.php -1   $
  */
 

@@ -1,8 +1,8 @@
 <?php
 /**
- * @file UrlManager.php
- * @author ouyangjunqiu
- * @version Created by 16/6/2 16:57
+ * 重写UrlManager
+ * @package cloud.core.components
+ * @author oshine <oshine.ouyang@da-mai.com>
  */
 
 namespace cloud\core\components;

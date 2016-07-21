@@ -1,17 +1,8 @@
 <?php
 
 /**
- * 缓存工具类文件
- *
- * @author banyanCheung <banyan@AppCloud.com.cn>
- * @link http://www.AppCloud.com.cn/
- * @copyright Copyright &copy; 2012-2013 AppCloud Inc
- */
-/**
  * 缓存工具类，提供AppCloud缓存组件的简短写法及系统缓存方法封装
  * @package cloud.core.utils
- * @see cloud.core.components.cache
- * @author banyanCheung <banyan@AppCloud.com.cn>
  * @version $Id: cache.php -1   $
  */
 

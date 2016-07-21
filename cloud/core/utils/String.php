@@ -1,18 +1,10 @@
 <?php
 
 /**
- * 字符串操作工具类文件
- *
- * @author banyanCheung <banyan@Cloud.com.cn>
- * @link http://www.Cloud.com.cn/
- * @copyright Copyright &copy; 2012-2013 Cloud Inc
- */
-/**
  * 字符串操作工具类,提供字符串操作的所需方法，如过滤，截取，查找，加解密等
  * 
  * @package application.core.utils
  * @version $Id: string.php -1   $
- * @author banyanCheung <banyan@Cloud.com.cn>
  */
 
 namespace cloud\core\utils;

@@ -1,13 +1,6 @@
 <?php
 
 /**
- * 核心组件------插件管理器组件类文件
- *
- * @link http://www.YJCloud.com.cn/
- * @copyright Copyright &copy; 2008-2013 YJCloud Inc
- * @author gzwwb <gzwwb@YJCloud.com.cn>
- */
-/**
  * 核心组件------插件管理器组件类，必须继承CApplicationComponent
  * @package cloud.core.components
  * @author oshine <oshine.ouyang@da-mai.com>

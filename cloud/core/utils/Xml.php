@@ -1,18 +1,9 @@
 <?php
 
 /**
- * XML助手类文件
- *
- * @author Ring <Ring@YJCloud.com.cn>
- * @link http://www.YJCloud.com.cn/
- * @copyright Copyright &copy; 2012-2013 YJCloud Inc
- */
-/**
  * XML助手类,提供xml转换到数组和数组转换到xml方法
  * 
  * @package cloud.core.utils
- * @version $Id: Xml.php 4064 2014-09-03 09:13:16Z zhangrong $
- * @author Ring <Ring@YJCloud.com.cn>
  */
 
 namespace cloud\core\utils;
@@ -60,8 +51,6 @@ class Xml {
  * XML解析类,提供创建xml解析方法
  * 
  * @package application.core.utils
- * @version $Id: Xml.php 4064 2014-09-03 09:13:16Z zhangrong $
- * @author Ring <Ring@YJCloud.com.cn>
  */
 class XMLParse {
 

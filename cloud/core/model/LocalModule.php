@@ -1,9 +1,10 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 2015-10-10
- * Time: 11:15
+ * Modules管理的基本操作
+ *
+ * @package cloud.core.model
+ * @version $Id$
+ * @author oShine
  */
 
 namespace cloud\core\model;

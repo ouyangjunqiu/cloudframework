@@ -1,18 +1,9 @@
 <?php
-
-/**
- * 文件助手类文件.
- *
- * @author  banyanCheung <banyan@Cloud.com.cn>
- * @link http://www.Cloud.com.cn/
- * @copyright Copyright &copy; 2012-2013 Cloud Inc
- */
 /**
  * 文件助手类,提供一套通用文件系统操作的助手方法
  *
  * @package application.core.utils
  * @version $Id: file.php -1   $
- * @author banyanCheung <banyan@Cloud.com.cn>
  */
 
 namespace cloud\core\utils;

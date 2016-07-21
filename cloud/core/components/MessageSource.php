@@ -1,12 +1,4 @@
 <?php
-
-/**
- * 全局消息类型处理文件
- *
- * @author banyanCheung <banyan@YJCloud.com.cn>
- * @link http://www.YJCloud.com.cn/
- * @copyright Copyright &copy; 2012-2013 YJCloud Inc
- */
 /**
  * 继承CPhpMessageSource的消息来源类。
  * @package cloud.core.components

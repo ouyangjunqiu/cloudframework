@@ -1,17 +1,8 @@
 <?php
-
-/**
- * api应用工具类
- *
- * @author banyanCheung <banyan@YJCloud.com.cn>
- * @link http://www.YJCloud.com.cn/
- * @copyright Copyright &copy; 2012-2013 YJCloud Inc
- */
 /**
  * 提供api curl的连接调用
  * @package application.core.utils
  * @version $Id$
- * @author banyanCheung <banyan@YJCloud.com.cn>
  */
 
 namespace cloud\core\utils;

@@ -1,18 +1,8 @@
 <?php
-
-/**
- * FTP操作工具类文件
- *
- * @author banyanCheung <banyan@Cloud.com.cn>
- * @link http://www.Cloud.com.cn/
- * @copyright Copyright &copy; 2012-2013 Cloud Inc
- */
 /**
  * FTP工具类，提供FTP操作的所有方法
  *
  * @package application.core.utils
- * @version $Id: ftp.php -1   $
- * @author banyanCheung <banyan@Cloud.com.cn>
  */
 
 namespace cloud\core\utils;

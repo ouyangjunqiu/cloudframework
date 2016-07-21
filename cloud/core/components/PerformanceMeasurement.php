@@ -1,13 +1,6 @@
 <?php
 
 /**
- * 全局性能检测组件文件
- *
- * @author banyanCheung <banyan@YJCloud.com.cn>
- * @link http://www.YJCloud.com.cn/
- * @copyright Copyright &copy; 2012-2013 YJCloud Inc
- */
-/**
  * 性能检测组件，可用于生成模式检测性能
  *
  * @package cloud.core.components
