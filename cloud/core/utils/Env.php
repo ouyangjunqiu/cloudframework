@@ -212,6 +212,7 @@ class Env {
 	 * @param $defaultValue
 	 * @param $sessionKey
 	 * @return mixed
+	 * @deprecated
 	 */
 	public static function getRequestWithSessionDefault($key,$defaultValue,$sessionKey){
 		$var = self::getRequest($key);
@@ -233,6 +234,7 @@ class Env {
 	 * @param $key
 	 * @param $defaultValue
 	 * @return string
+	 * @deprecated
 	 */
 	public static function getRequestWithDefault($key,$defaultValue){
 		$var = self::getRequest($key);
@@ -242,7 +244,39 @@ class Env {
 		return $defaultValue;
 	}
 
+	/**
+	 * @param $key
+	 * @param $defaultValue
+	 * @return string
+	 */
+	public static function getQueryDefault($key,$defaultValue){
+		$var = self::getQuery($key);
+		if(isset($var) && !is_null($var)){
+			return $var;
+		}
+		return addslashes($defaultValue);
+	}
 
+	/**
+	 * @param $key
+	 * @param $defaultValue
+	 * @param string $prefix
+	 * @return mixed|string
+	 */
+	public static function getSession($key,$defaultValue,$prefix = "cache.query"){
+		$sn = md5($prefix.".".$key);
+		$var = self::getQuery($key);
+		if(isset($var) && !is_null($var)){
+			Cloud::app()->session->add($sn,$var);
+			return $var;
+		}else{
+			$var = Cloud::app()->session->get($sn);
+			if(isset($var) && !is_null($var)){
+				return $var;
+			}
+			return addslashes($defaultValue);
+		}
+	}
 
 	/**
 	 * 获取用户加密的8位身份标识字符串
