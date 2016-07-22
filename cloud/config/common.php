@@ -14,6 +14,7 @@ return array(
     'defaultController' => 'main/default/index',
     // 框架核心语言
     'sourceLanguage' => 'zh_cn',
+    'charset' => CHARSET,
     // 定义所用组件
     'components' => array(
         // --------- 全局与系统组件 ---------
