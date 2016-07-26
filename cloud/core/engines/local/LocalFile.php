@@ -1,18 +1,10 @@
 <?php
-
-/**
- * YJCloud本地文件 处理类
- *
- * @author banyanCheung <banyan@YJCloud.com.cn>
- * @link http://www.YJCloud.com.cn/
- * @copyright Copyright &copy; 2012-2013 YJCloud Inc
- */
 /**
  * 本地文件处理类，基本上就是php文件函数的封装,实现IO接口
  * 
  * @package ext.enginedriver.local
- * @author banyanCheung <banyan@YJCloud.com.cn>
- * @version $Id: file.php 3934 2014-08-11 09:32:26Z gzhzh $
+ * @author oshine <oyjqdlp@126.com>
+ * @version $Id
  */
 
 namespace cloud\core\engines\local;

@@ -1,11 +1,11 @@
 <?php
 
 /**
- * YJCloud本地环境引擎
+ * Cloud本地环境引擎
  *
  * @package application.core.engines
- * @author banyanCheung <banyan@YJCloud.com.cn>
- * @version $Id: local.php 3049 2014-04-09 01:19:23Z zhangrong $
+ * @author oshine <oyjqdlp@126.com>
+ * @version $Id:
  */
 
 namespace cloud\core\engines;

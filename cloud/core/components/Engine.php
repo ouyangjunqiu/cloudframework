@@ -1,11 +1,4 @@
 <?php
-
-/**
- * Cloud引擎驱动文件
- *
- * @author oshine <oshine.ouyang@da-mai.com>
- * @copyright Copyright &copy; 2012-2014 YJCloud Inc
- */
 /**
  * 引擎驱动抽象父类,初始化程序配置文件，提供IO与初始化配置接口给子类扩展
  * 

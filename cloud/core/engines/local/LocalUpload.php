@@ -1,5 +1,6 @@
 <?php
 /**
+ * 本地环境上传类
  * @file LocalUpload.php
  * @author ouyangjunqiu
  * @version Created by 16/6/15 09:27

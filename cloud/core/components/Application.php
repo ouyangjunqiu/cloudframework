@@ -1,12 +1,4 @@
 <?php
-
-/**
- * Cloud 应用程序组件
- *
- * @author banyanCheung <banyan@YJCloud.com.cn>
- * @link http://www.YJCloud.com.cn/
- * @copyright Copyright &copy; 2012-2014 YJCloud Inc
- */
 /**
  * Application,模块及分发控制器
  * @package cloud.core.components
