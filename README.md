@@ -24,32 +24,33 @@
      |- web  *web入口文件目录*
      
 
-2. 创建一个项目,web/index.php
+2. 创建一个项目,入口文件: web/index.php
 
-   <?php 
-   
-	 	use cloud\Cloud;
-   		include dirname(dirname(__FILE__))."/library/cloud/bootstrap.php";
-   		$app = Cloud::createWebApplication();
-   		$app->run();
-   		exit;  
-   		  
-
+	~~~
+	<?php 
+	   
+	use cloud\Cloud;
+	include dirname(dirname(__FILE__))."/library/cloud/bootstrap.php";
+	$app = Cloud::createWebApplication();
+	$app->run();
+	exit;   		  
+	~~~
 
 3. 创建一个module,案例main.
 
 	* 创建 system/modules/main/MainModule.php
-
-    <?php
+	
+		~~~
+   	 	<?php
     
-            namespace application\modules\main;
-            use cloud\core\modules\Module;
-            class MainModule extends Module {
-            }
+       namespace application\modules\main;
+       use cloud\core\modules\Module;
+       class MainModule extends Module {
+       }
+		~~~
+    * 创建 system/modules/main/install/config.php 为模块配置文件
 
-     * 创建 system/modules/main/install/config.php 为模块配置文件
-
-
+  	 ~~~
     <?php
     
          return array(
@@ -81,11 +82,12 @@
              ),
          );
     
+		~~~
 
-     * 创建 system/modules/main/controllers/DefaultController.php 为控制器文件
+    * 创建 system/modules/main/controllers/DefaultController.php 为控制器文件
      
+     ~~~
     <?php
-    
         namespace application\modules\main\controllers;
         use cloud\core\controllers\Controller;
         class DefaultController extends Controller
@@ -94,9 +96,11 @@
                 return $this->render('index');
             }
         }
-
-     *   创建 system/modules/main/views/default/index.php 为视图文件
+ 	~~~
+    *   创建 system/modules/main/views/default/index.php 为视图文件
      
-          `<p>hello world!</p>`
+          ~~~
+          <p>hello world!</p>
+          ~~~
 
-     * 访问:http://localhost/web/index.php?r=main/default/index
+    * 访问:http://localhost/web/index.php?r=main/default/index
