@@ -57,10 +57,10 @@ class Application extends CWebApplication {
      */
     public function configure( $config ) {
         // 初始化ENGINE定义的引擎驱动
-        $engineClass = 'cloud\core\engines\\' . ( ucfirst( strtolower( ENGINE ) ) );
-        $engine = new $engineClass( $config );
+        $engine = Engine::factory();
         Cloud::setEngine( $engine );
-        parent::configure( $engine->getEngineConfig() );
+        $config = \CMap::mergeArray($config,$engine->getConfig());
+        parent::configure( $config );
     }
 
 

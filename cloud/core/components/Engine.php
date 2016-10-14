@@ -9,49 +9,67 @@
 
 namespace cloud\core\components;
 
+use cloud\core\engines\Local;
+
 abstract class Engine {
 
     /**
      * 当前引擎处理过后的配置文件
      * @var array 
      */
-    private $_engineConfig;
+    protected $_config;
+
+
+    private static $instance = null;
+
+    public static function factory(){
+
+        if(self::$instance !== null && self::$instance instanceof Engine)
+            return self::$instance;
+
+        if(file_exists(PATH_DATA."/deploy")){
+            defined( 'DEBUG' ) or define( 'DEBUG', false );
+
+            $config = require_once PATH_DATA.DIRECTORY_SEPARATOR."production".DIRECTORY_SEPARATOR."config.php";
+            self::$instance = new Local($config);
+
+        }else{
+            defined( 'DEBUG' ) or define( 'DEBUG', true );
+            error_reporting( E_ALL | E_STRICT );
+
+            $config = require_once PATH_DATA.DIRECTORY_SEPARATOR."development".DIRECTORY_SEPARATOR."config.php";
+            self::$instance = new Local($config);
+        }
+
+        defined( 'YII_DEBUG' ) or define( 'YII_DEBUG', DEBUG );
+
+        // 错误等级
+        define( 'YII_TRACE_LEVEL', DEBUG ? 3 : 0  );
+
+        return self::$instance;
+    }
 
     /**
-     * 主配置文件数组
-     * @var array 
+     * @param array $config 程序配置数组
      */
-    private $_mainConfig;
+    public function __construct( $config ) {
 
-    /**
-     * 构造方法，初始化安装config与程序config,调用子类特定的引擎配置方法
-     * @param array $appConfig 程序配置数组
-     */
-    final function __construct( $appConfig ) {
-        $mainConfig = require_once ( ENV_CONFIG );
-        $this->_mainConfig = $mainConfig;
-        $this->_engineConfig = $this->initConfig( $appConfig, $mainConfig );
+        $this->setConfig($config);
         $this->init();
     }
 
-    /**
-     * 主配置文件：即安装程序生成的配置文件
-     * @return array
-     */
-    public function getMainConfig() {
-        return (array) $this->_mainConfig;
-    }
 
     /**
      * 获取当前引擎处理过后的配置文件
      * @return array
      */
-    public function getEngineConfig() {
-        return (array) $this->_engineConfig;
+    public function getConfig() {
+        return (array) $this->_config;
     }
 
     /**
      * 开始配置前的预处理，子类应重新实现该方法
+     *
      * @return void
      */
     protected function init() {
@@ -59,9 +77,12 @@ abstract class Engine {
     }
 
     /**
-     * 子类应实现初始化各自引擎的配置文件方法
+     * @param $config
+     * @return mixed
      */
-    abstract protected function initConfig( $appConfig, $mainConfig );
+    public function setConfig( $config ){
+        $this->_config = $config;
+    }
 
     /**
      * io 接口
