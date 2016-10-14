@@ -44,7 +44,7 @@ abstract class Engine {
         defined( 'YII_DEBUG' ) or define( 'YII_DEBUG', DEBUG );
 
         // 错误等级
-        define( 'YII_TRACE_LEVEL', DEBUG ? 3 : 0  );
+        defined( 'YII_TRACE_LEVEL' ) or define( 'YII_TRACE_LEVEL', DEBUG ? 3 : 0  );
 
         return self::$instance;
     }

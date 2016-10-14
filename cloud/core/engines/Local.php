@@ -16,7 +16,7 @@ use cloud\core\engines\local\LocalIo;
 use CMap;
 
 class Local extends Engine {
-    
+
     /**
      * 获取 IO 接口
      * @staticvar null $io
