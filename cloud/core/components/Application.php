@@ -11,6 +11,7 @@ use CAction;
 use CController;
 use CEvent;
 use cloud\Cloud;
+use cloud\core\utils\Convert;
 use cloud\core\utils\Module;
 use CWebApplication;
 
@@ -22,20 +23,29 @@ class Application extends CWebApplication {
      */
     private $_enabledModule = array();
 
+    protected function preinit(){
+        if ( function_exists( 'date_default_timezone_set' ) ) {
+            @date_default_timezone_set('PRC');
+        }
+
+        if ( function_exists( 'ini_get' ) ) {
+            $memorylimit = @ini_get( 'memory_limit' );
+            if ( $memorylimit && Convert::ConvertBytes( $memorylimit ) < 33554432 && function_exists( 'ini_set' ) ) {
+                ini_set( 'memory_limit', '128m' );
+            }
+        }
+        parent::preinit();
+    }
+
     /**
      * 初始化方法：设置授权，配置所有已安装的模块
      * @return void
      */
     protected function init() {
-        if ( !defined( 'IN_DEBUG' ) ) {
-            $this->_enabledModule = Module::fetchAllModule();
-            foreach ( $this->getEnabledModule() as $name => $config ) {
-                if ( isset( $config['behaviors'] ) ) {
-                    $this->attachBehaviors( $config['behaviors'] );
-                }
-                if ( isset( $config['config'] ) ) {
-                    parent::configure( $config['config'] );
-                }
+        $this->_enabledModule = Module::fetchAllModule();
+        foreach ( $this->getEnabledModule() as $name => $config ) {
+            if ( isset( $config['config'] ) ) {
+                parent::configure( $config['config'] );
             }
         }
         parent::init();
@@ -53,23 +63,28 @@ class Application extends CWebApplication {
         parent::configure( $engine->getEngineConfig() );
     }
 
-    /**
-     * 当模块完成配置时发起一个事件
-     * @param CEvent $event 事件参数
-     * @return void 
-     */
-    public function onInitModule( $event ) {
-        $this->raiseEvent( 'onInitModule', $event );
-    }
 
     /**
-     * 当更新缓存时发起一个事件
-     * @param CEvent $event 事件参数
-     * @return void
+     * Processes the current request.
+     * It first resolves the request into controller and action,
+     * and then creates the controller to perform the action.
      */
-    public function onUpdateCache( $event ) {
-        $this->raiseEvent( 'onUpdateCache', $event );
+    public function processRequest()
+    {
+        if(is_array($this->catchAllRequest) && isset($this->catchAllRequest[0]))
+        {
+            $route=$this->catchAllRequest[0];
+            foreach(array_splice($this->catchAllRequest,1) as $name=>$value)
+                $_GET[$name]=$value;
+        }
+        else
+            $route=$this->getUrlManager()->parseUrl($this->getRequest());
+
+        defined('STATICURL') OR define( 'STATICURL', $this->getAssetManager()->getBaseUrl() );
+
+        $this->runController($route);
     }
+
 
     /**
      * 返回可用的模块数组

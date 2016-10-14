@@ -94,11 +94,6 @@ return array(
         ),
 
     ),
-    'behaviors' => array(
-        'onInitModule' => array(
-            'class' => 'cloud\core\behaviors\InitEnvironmentBehavior'
-        )
-    ),
     'params' => array(
         // Yii版本
         'yiiVersion' => '1.1.13',

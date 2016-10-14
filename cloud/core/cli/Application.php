@@ -13,6 +13,19 @@ class Application extends WebApplication
 {
 
     private $_runner;
+
+
+    /**
+     * Pre Initializes the application by creating the command runner.
+     */
+
+    protected function preinit()
+    {
+        if (function_exists('date_default_timezone_set')) {
+            @date_default_timezone_set('PRC');
+        }
+    }
+
     /**
      * Initializes the application by creating the command runner.
      */
