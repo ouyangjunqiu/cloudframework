@@ -14,6 +14,7 @@ use cloud\Cloud;
 use cloud\core\utils\Convert;
 use cloud\core\utils\Module;
 use CWebApplication;
+use CMap;
 
 class Application extends CWebApplication {
 
@@ -57,9 +58,8 @@ class Application extends CWebApplication {
      */
     public function configure( $config ) {
         // 初始化ENGINE定义的引擎驱动
-        $engine = Engine::factory();
-        Cloud::setEngine( $engine );
-        $config = \CMap::mergeArray($config,$engine->getConfig());
+        $engine = Cloud::engine();
+        $config = CMap::mergeArray($config,$engine->getConfig());
         parent::configure( $config );
     }
 

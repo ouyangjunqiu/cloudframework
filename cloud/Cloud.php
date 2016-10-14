@@ -5,6 +5,8 @@
 namespace cloud;
 
 use CException;
+use cloud\core\components\Engine;
+use cloud\core\engines\Local;
 
 class Cloud extends \Yii
 {
@@ -100,26 +102,40 @@ class Cloud extends \Yii
 
     /**
      * 返回当前平台引擎
-     * @return mixed
+     * @return Engine
      */
     public static function engine() {
+
+        if(self::$_engine !== null && self::$_engine instanceof Engine)
+            return self::$_engine;
+
+        if(file_exists(PATH_DATA."/deploy")){
+            defined( 'DEBUG' ) or define( 'DEBUG', false );
+
+            $config = require_once PATH_DATA.DIRECTORY_SEPARATOR."production".DIRECTORY_SEPARATOR."config.php";
+            self::$_engine = new Local($config);
+
+        }else{
+            defined( 'DEBUG' ) or define( 'DEBUG', true );
+            error_reporting( E_ALL | E_STRICT );
+
+            $config = require_once PATH_DATA.DIRECTORY_SEPARATOR."development".DIRECTORY_SEPARATOR."config.php";
+            self::$_engine = new Local($config);
+        }
+
+        defined( 'YII_DEBUG' ) or define( 'YII_DEBUG', DEBUG );
+
+        // 错误等级
+        defined( 'YII_TRACE_LEVEL' ) or define( 'YII_TRACE_LEVEL', DEBUG ? 3 : 0  );
+
         return self::$_engine;
     }
 
+
     /**
-     * 设置当前平台引擎,如果已经设置或为空会抛出一个异常
-     * @param object $engine
-     * @throws CException
+     * @param null $config
+     * @return \CApplication
      */
-    public static function setEngine( $engine ) {
-        if ( self::$_engine === null || $engine === null ) {
-            self::$_engine = $engine;
-        } else {
-            throw new CException( self::lang( 'YJCloud engine can only be created once.', 'error' ) );
-        }
-    }
-
-
     public static function createWebApplication($config=null)
     {
         if($config == null){
@@ -129,6 +145,10 @@ class Cloud extends \Yii
     }
 
 
+    /**
+     * @param null $config
+     * @return \CApplication
+     */
     public static function createConsoleApplication($config=null)
     {
         if($config == null){

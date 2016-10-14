@@ -19,36 +19,6 @@ abstract class Engine {
      */
     protected $_config;
 
-
-    private static $instance = null;
-
-    public static function factory(){
-
-        if(self::$instance !== null && self::$instance instanceof Engine)
-            return self::$instance;
-
-        if(file_exists(PATH_DATA."/deploy")){
-            defined( 'DEBUG' ) or define( 'DEBUG', false );
-
-            $config = require_once PATH_DATA.DIRECTORY_SEPARATOR."production".DIRECTORY_SEPARATOR."config.php";
-            self::$instance = new Local($config);
-
-        }else{
-            defined( 'DEBUG' ) or define( 'DEBUG', true );
-            error_reporting( E_ALL | E_STRICT );
-
-            $config = require_once PATH_DATA.DIRECTORY_SEPARATOR."development".DIRECTORY_SEPARATOR."config.php";
-            self::$instance = new Local($config);
-        }
-
-        defined( 'YII_DEBUG' ) or define( 'YII_DEBUG', DEBUG );
-
-        // 错误等级
-        defined( 'YII_TRACE_LEVEL' ) or define( 'YII_TRACE_LEVEL', DEBUG ? 3 : 0  );
-
-        return self::$instance;
-    }
-
     /**
      * @param array $config 程序配置数组
      */

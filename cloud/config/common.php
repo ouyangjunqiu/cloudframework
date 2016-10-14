@@ -55,16 +55,7 @@ return array(
             'class' => 'cloud\core\components\MessageSource',
             'basePath' => PATH_ROOT . DIRECTORY_SEPARATOR . 'system/language'
         ),
-        //Ldap
-        'ldap' => array(
-            'class' => 'cloud\core\components\Ldap',
-            'dn'=>'ou=Research,ou=Users,dc=dmcark,dc=com',
-            'adn'=>'cn=admin,dc=dmcark,dc=com',
-            'apass'=>'admin',
-            'protocol'=>3,
-            'port'=>389,
-            'hostname'=>"ctrl.da-mai.com",
-        ),
+
         //Setting
         'setting' => array(
             'class' => 'cloud\core\components\Setting'
@@ -73,12 +64,7 @@ return array(
         'performance' => array(
             'class' => 'cloud\core\components\PerformanceMeasurement'
         ),
-//        'cache' => array(
-//            'class' => 'system.caching.CMemCache',
-//            'servers' => array(
-//                array('host' => '10.241.48.213', 'port' => 9992),
-//            ),
-//        ),
+
         // 全局缓存组件
         'cache' => array(
             'class' => 'cloud\core\components\Cache',
@@ -105,8 +91,6 @@ return array(
         'basePerPage' => 10,
         // 等待跳转时间
         'timeout' => 3,
-        'appKey' => '21115760',
-        'appSecret' => 'f07253aa9f3d494fb7b01c85bec1fc0f',
     ),
     'preload' => array(
         'cache', 'log'
